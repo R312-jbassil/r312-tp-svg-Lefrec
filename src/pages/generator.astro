@@ -1,0 +1,20 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout>
+  <div class="flex flex-col h-full glass bg-primary p-8 pt-24 gap-6">
+    <div class="flex h-full w-full gap-4">
+      <!-- affichage svg -->
+      <div class="flex h-full w-full bg-white rounded-lg"></div>
+      <!-- code svg -->
+      <div class="flex h-full w-full bg-slate-900 rounded-lg"></div>
+    </div>
+    <div class="flex gap-4">
+      <!-- prompt input -->
+      <textarea class="textarea w-full rounded-lg" placeholder="Bio"></textarea>
+      <!-- button -->
+      <button class="btn btn-secondary h-full">Generate</button>
+    </div>
+  </div>
+</Layout>
