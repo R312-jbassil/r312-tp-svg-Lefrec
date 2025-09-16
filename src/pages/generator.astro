@@ -6,15 +6,50 @@ import Layout from "../layouts/Layout.astro";
   <div class="flex flex-col h-full glass bg-primary p-8 pt-24 gap-6">
     <div class="flex h-full w-full gap-4">
       <!-- affichage svg -->
-      <div class="flex h-full w-full bg-white rounded-lg"></div>
+      <div id="svg-container" class="flex h-full w-full bg-white rounded-lg"></div>
       <!-- code svg -->
-      <div class="flex h-full w-full bg-slate-900 rounded-lg"></div>
+      <div id="svg-output" class="flex h-full w-full bg-slate-900 rounded-lg text-white"></div>
     </div>
     <div class="flex gap-4">
       <!-- prompt input -->
-      <textarea class="textarea w-full rounded-lg" placeholder="Bio"></textarea>
+      <textarea id="user-prompt" class="textarea w-full rounded-lg" placeholder="Bio"></textarea>
       <!-- button -->
-      <button class="btn btn-secondary h-full">Generate</button>
+      <button id="generate-button" class="btn btn-secondary h-full">Generate</button>
     </div>
   </div>
 </Layout>
+
+<script>
+    //@ts-nocheck
+	
+	async function generateSVG(prompt) {
+		console.log('Generating SVG for prompt:', prompt);
+		const res = await fetch('/api/generateSVG', {
+			method: 'POST',
+			headers: { 'Content-Type': 'application/json' },
+			body: JSON.stringify({ prompt }),
+		});
+		const data = await res.json();
+		return data.svg;
+	}
+
+	async function handleSubmit() {
+        let prompt = "";
+        let svgCode = "";
+        const promptElement = document.getElementById("user-prompt");
+        prompt = promptElement ? promptElement.value : "";
+        console.log('submitted: ', prompt); // message affiché sur votre console d'inspecteur dans le navigateur
+        const svgContainer = document.getElementById("svg-container");
+        let svgOutput = document.getElementById("svg-output");
+        svgCode = await generateSVG(prompt);
+        console.log('svgCode: ', svgCode);
+        svgOutput.textContent = svgCode;
+        svgContainer.innerHTML = svgCode;
+        generateButton.disabled = false;
+
+	}
+    const generateButton = document.getElementById("generate-button");
+	if (generateButton) {
+		generateButton.addEventListener("click", handleSubmit);
+	}
+</script>
