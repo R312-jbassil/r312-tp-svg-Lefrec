@@ -12,7 +12,10 @@ const SVGs = await getAllSVG();
         SVGs?.map((SVG) => (
           <div class="bg-white rounded-lg w-fit h-fit p-4 justify-center items-center shadow-md">
             <h2 class="text-xl font-bold">{SVG.name}</h2>
-            <div class="flex items-center justify-center" set:html={SVG.code}></div>
+            <div
+              class="flex items-center justify-center w-[300px] h-[300px] rounded-lg overflow-hidden"
+              set:html={SVG.code}
+            />
           </div>
         ))
       }
