@@ -1,5 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import { addSVG } from "../../backend/backend";
 ---
 
 <Layout>
@@ -21,6 +22,9 @@ import Layout from "../layouts/Layout.astro";
 
 <script>
     //@ts-nocheck
+
+import { addSVG } from "../../backend/backend";
+
 	
 	async function generateSVG(prompt) {
 		console.log('Generating SVG for prompt:', prompt);
@@ -48,7 +52,7 @@ import Layout from "../layouts/Layout.astro";
         svgOutput.textContent = svgCode;
         svgContainer.innerHTML = svgCode;
         generateButton.disabled = false;
-
+        addSVG(prompt, svgCode);
 	}
     const generateButton = document.getElementById("generate-button");
 	if (generateButton) {
