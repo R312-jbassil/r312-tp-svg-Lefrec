@@ -16,3 +16,15 @@ export async function addSVG(name, code) {
         }
     }
 }
+
+export async function getAllSVG() {
+    try {
+        const SVGs = await pb.collection('SVG').getFullList();
+        return SVGs
+    } catch (error) {
+        return {
+            success : false,
+            message : "Problème avec le pocketbase"
+        }
+    }
+}

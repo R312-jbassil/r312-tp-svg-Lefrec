@@ -1,0 +1,21 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { getAllSVG } from "../../backend/backend";
+
+const SVGs = await getAllSVG();
+---
+
+<Layout>
+  <div class="flex flex-col h-full glass bg-primary p-8 pt-24 gap-6">
+    <div class="flex flex-wrap gap-4">
+      {
+        SVGs?.map((SVG) => (
+          <div class="bg-white rounded-lg w-fit h-fit p-4 justify-center items-center shadow-md">
+            <h2 class="text-xl font-bold">{SVG.name}</h2>
+            <div class="flex items-center justify-center" set:html={SVG.code}></div>
+          </div>
+        ))
+      }
+    </div>
+  </div>
+</Layout>
