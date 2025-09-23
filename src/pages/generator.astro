@@ -25,11 +25,17 @@ import Layout from "../layouts/Layout.astro";
         class="textarea w-full rounded-lg shadow-md"
         placeholder="Bio"></textarea>
       <!-- button -->
-      <button id="generate-button" class="btn btn-secondary h-full shadow-md min-w-[100px]"
+      <button
+        id="generate-button"
+        class="btn btn-secondary h-full shadow-md min-w-[100px]"
         >Generate</button
       >
       <button id="edit-button" class="btn h-full shadow-md min-w-[100px]"
         >Edit</button
+      >
+      <button
+        id="save-button"
+        class="btn btn-secondary h-full shadow-md min-w-[100px]">Save</button
       >
     </div>
   </div>
@@ -111,7 +117,34 @@ import Layout from "../layouts/Layout.astro";
     generateButton.disabled = false;
     editButton.disabled = false;
     console.log("Historique des prompts : ", promptList);
-}
+  }
+
+  const saveButton = document.getElementById("save-button");
+
+  async function saveSVG(params) {
+    const res = await fetch("/api/saveSVG", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(params),
+    });
+    const data = await res.json();
+    return data;
+  }
+
+  if (saveButton) {
+    saveButton.addEventListener("click", async () => {
+      const name = prompt("Entrez un nom pour le SVG :");
+      const svgOutput = document.getElementById("svg-output")?.textContent;
+      console.log("Sauvegarde du SVG : ", JSON.stringify(svgOutput));
+
+      const params = {
+        name: name,
+        code_svg: svgOutput || "<svg></svg>",
+        chat_history: JSON.stringify(promptList),
+      };
+      await saveSVG(params);
+    });
+  }
 
   const generateButton = document.getElementById("generate-button");
   if (generateButton) {

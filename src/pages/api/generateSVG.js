@@ -1,8 +1,6 @@
 // src/pages/api/generate-svg.js
 import { OpenAI } from 'openai';
 
-import { addSVG } from "../../../backend/backend.js";
-
 // Récupération du token d'accès à partir des variables d'environnement
 const HF_TOKEN = import.meta.env.HF_TOKEN;
 
@@ -43,9 +41,6 @@ export const POST = async ({ request }) => {
     
     // Si un SVG est trouvé, le remplace dans le message, sinon laisse une chaîne vide
     message.content = svgMatch ? svgMatch[0] : "";
-
-    // const userPrompt = messages.find(m => m.role === "user")?.content || "";
-    // await addSVG(userPrompt, message.content);
     
     // Retourne une réponse JSON contenant le SVG généré
     return new Response(JSON.stringify({ svg: message }), {
