@@ -44,8 +44,8 @@ export const POST = async ({ request }) => {
     // Si un SVG est trouvé, le remplace dans le message, sinon laisse une chaîne vide
     message.content = svgMatch ? svgMatch[0] : "";
 
-    const userPrompt = messages.find(m => m.role === "user")?.content || "";
-    await addSVG(userPrompt, message.content);
+    // const userPrompt = messages.find(m => m.role === "user")?.content || "";
+    // await addSVG(userPrompt, message.content);
     
     // Retourne une réponse JSON contenant le SVG généré
     return new Response(JSON.stringify({ svg: message }), {
