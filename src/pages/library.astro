@@ -14,7 +14,7 @@ const SVGs = await getAllSVG();
             <h2 class="text-xl font-bold">{SVG.name}</h2>
             <div
               class="flex items-center justify-center w-[300px] h-[300px] rounded-lg overflow-hidden"
-              set:html={SVG.code}
+              set:html={SVG.code_svg}
             />
           </div>
         ))
