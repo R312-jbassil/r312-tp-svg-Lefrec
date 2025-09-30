@@ -3,8 +3,8 @@ import Layout from "../layouts/Layout.astro";
 
 import { ui } from "../i18n/ui.js";
 
-const locale = Astro.locals.lang as 'en' | 'fr' ?? 'en';
-console.log('Locale in index:', locale);
+const locale = (Astro.locals.lang as "en" | "fr") ?? "en";
+console.log("Locale in index:", locale);
 ---
 
 <Layout>
@@ -36,7 +36,8 @@ console.log('Locale in index:', locale);
       >
       <button
         id="save-button"
-        class="btn btn-secondary h-full shadow-md min-w-[100px]">{ui[locale].generator.saveButton}</button
+        class="btn btn-secondary h-full shadow-md min-w-[100px]"
+        >{ui[locale].generator.saveButton}</button
       >
     </div>
   </div>
