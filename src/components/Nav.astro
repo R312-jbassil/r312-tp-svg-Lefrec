@@ -1,4 +1,10 @@
-<ul class="menu bg-base-200 lg:menu-horizontal rounded-box fixed top-4 left-4 z-2">
+---
+import { ui } from "../i18n/ui.js";
+const locale = Astro.locals.lang as 'en' | 'fr' ?? 'en';
+---
+<ul
+  class="menu bg-base-200 lg:menu-horizontal rounded-box fixed top-4 left-4 z-2"
+>
   <li>
     <a href="/">
       <svg
@@ -6,14 +12,16 @@
         class="h-5 w-5"
         fill="none"
         viewBox="0 0 24 24"
-        stroke="currentColor">
+        stroke="currentColor"
+      >
         <path
           stroke-linecap="round"
           stroke-linejoin="round"
           stroke-width="2"
-          d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+          d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
+        ></path>
       </svg>
-      Home
+      {ui[locale].nav.home}
     </a>
   </li>
   <li>
@@ -23,20 +31,28 @@
         class="h-5 w-5"
         fill="none"
         viewBox="0 0 24 24"
-        stroke="currentColor">
+        stroke="currentColor"
+      >
         <path
           stroke-linecap="round"
           stroke-linejoin="round"
           stroke-width="2"
-          d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+          d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path>
       </svg>
-      Generate
-      <span class="badge badge-xs badge-secondary">FREE</span>
+      {ui[locale].nav.generator}
+      <span class="badge badge-xs badge-secondary">{ui[locale].nav.free}</span>
     </a>
   </li>
   <li>
-    <a href="/library">
-      Library
-    </a>
+    <a href="/gallery/">{ui[locale].nav.gallery}</a>
+  </li>
+  <li>
+    <form method="POST" action={Astro.url.pathname}>
+      <select name="language" class="select" onchange="this.form.submit()">
+        <option disabled selected="true">{ui[locale].nav.language}</option>
+        <option value="en">English</option>
+        <option value="fr">Français</option>
+      </select>
+    </form>
   </li>
 </ul>

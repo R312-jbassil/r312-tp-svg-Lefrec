@@ -1,17 +1,20 @@
 ---
 import Layout from "../layouts/Layout.astro";
+
+import { ui } from "../i18n/ui.js";
+
+const locale = Astro.locals.lang as 'en' | 'fr' ?? 'en';
+console.log('Locale in index:', locale);
 ---
 
 <Layout>
   <div class="flex flex-col h-full glass bg-primary p-8 pt-24 gap-6">
     <div class="flex h-full w-full gap-4">
-      <!-- affichage svg -->
       <div
         id="svg-container"
         class="flex items-center justify-center h-full w-full bg-white rounded-lg shadow-md"
       >
       </div>
-      <!-- code svg -->
       <div
         id="svg-output"
         class="flex h-full w-full bg-slate-900 rounded-lg text-white shadow-md overflow-hidden"
@@ -19,23 +22,22 @@ import Layout from "../layouts/Layout.astro";
       </div>
     </div>
     <div class="flex gap-4">
-      <!-- prompt input -->
       <textarea
         id="user-prompt"
         class="textarea w-full rounded-lg shadow-md"
-        placeholder="Bio"></textarea>
+        placeholder={ui[locale].generator.promptLabel}></textarea>
       <!-- button -->
       <button
         id="generate-button"
         class="btn btn-secondary h-full shadow-md min-w-[100px]"
-        >Generate</button
+        >{ui[locale].generator.generateButton}</button
       >
       <button id="edit-button" class="btn h-full shadow-md min-w-[100px]"
-        >Edit</button
+        >{ui[locale].generator.editButton}</button
       >
       <button
         id="save-button"
-        class="btn btn-secondary h-full shadow-md min-w-[100px]">Save</button
+        class="btn btn-secondary h-full shadow-md min-w-[100px]">{ui[locale].generator.saveButton}</button
       >
     </div>
   </div>
