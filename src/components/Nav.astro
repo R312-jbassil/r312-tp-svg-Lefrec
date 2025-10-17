@@ -1,9 +1,10 @@
 ---
 import { ui } from "../i18n/ui.js";
-const locale = Astro.locals.lang as 'en' | 'fr' ?? 'en';
+const locale = (Astro.locals.lang as "en" | "fr") ?? "en";
 ---
+
 <ul
-  class="menu bg-base-200 lg:menu-horizontal rounded-box fixed top-4 left-4 z-2"
+  class="menu bg-base-200 lg:menu-horizontal fixed top-4 left-4 z-2 thin-border"
 >
   <li>
     <a href="/">
@@ -48,7 +49,11 @@ const locale = Astro.locals.lang as 'en' | 'fr' ?? 'en';
   </li>
   <li>
     <form method="POST" action={Astro.url.pathname}>
-      <select name="language" class="select" onchange="this.form.submit()">
+      <select
+        name="language"
+        class="select bg-base-300 thin-border"
+        onchange="this.form.submit()"
+      >
         <option disabled selected="true">{ui[locale].nav.language}</option>
         <option value="en">English</option>
         <option value="fr">Français</option>

@@ -8,8 +8,8 @@ const SVGs = await getAllSVG();
 ---
 
 <Layout>
-  <div class="flex flex-col h-full glass bg-primary p-8 pt-24 gap-6">
-    <h1 class="text-4xl font-bold mb-4 text-primary-content">
+  <div class="flex flex-col h-full glass bg-base-200 p-8 pt-24 gap-6">
+    <h1 class="text-4xl font-bold mb-4">
       {ui[locale].gallery.title}
     </h1>
     <div class="flex flex-wrap gap-4">
@@ -18,11 +18,11 @@ const SVGs = await getAllSVG();
           SVGs.map((SVG) => (
             <a
               href={`/gallery/${SVG.id}`}
-              class="bg-white rounded-lg w-fit h-fit p-4 justify-center items-center shadow-md"
+              class="bg-base-300   w-fit h-fit p-4 justify-center items-center thin-border"
             >
               <h2 class="text-xl font-bold">{SVG.name}</h2>
               <div
-                class="flex items-center justify-center w-[300px] h-[300px] rounded-lg overflow-hidden"
+                class="flex items-center justify-center w-[300px] h-[300px]   overflow-hidden"
                 set:html={SVG.code_svg}
               />
             </a>

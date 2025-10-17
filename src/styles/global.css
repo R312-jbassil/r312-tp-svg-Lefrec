@@ -1,2 +1,73 @@
 @import "tailwindcss";
 @plugin "daisyui";
+
+
+@plugin "daisyui/theme" {
+  name: "dark-theme";
+  default: true;
+  prefersdark: true;
+  color-scheme: "dark";
+  --color-base-100: oklch(28.822% 0.022 277.508);
+  --color-base-200: oklch(26.805% 0.02 277.508);
+  --color-base-300: oklch(24.787% 0.019 277.508);
+  --color-base-content: oklch(97.747% 0.007 106.545);
+  --color-primary: oklch(91% 0.08 205.041);
+  --color-primary-content: oklch(15.092% 0.036 346.812);
+  --color-secondary: oklch(90% 0.093 164.15);
+  --color-secondary-content: oklch(14.84% 0.029 301.883);
+  --color-accent: oklch(83.392% 0.124 66.558);
+  --color-accent-content: oklch(16.678% 0.024 66.558);
+  --color-neutral: oklch(39.445% 0.032 275.524);
+  --color-neutral-content: oklch(87.889% 0.006 275.524);
+  --color-info: oklch(37% 0.044 257.287);
+  --color-info-content: oklch(17.652% 0.018 212.846);
+  --color-success: oklch(87.099% 0.219 148.024);
+  --color-success-content: oklch(17.419% 0.043 148.024);
+  --color-warning: oklch(95.533% 0.134 112.757);
+  --color-warning-content: oklch(19.106% 0.026 112.757);
+  --color-error: oklch(68.22% 0.206 24.43);
+  --color-error-content: oklch(13.644% 0.041 24.43);
+  --radius-selector: 0rem;
+  --radius-field: 0rem;
+  --radius-box: 0rem;
+  --size-selector: 0.25rem;
+  --size-field: 0.25rem;
+  --border: 1px;
+  --depth: 1;
+  --noise: 1;
+}
+
+/* Fixes for DaisyUI chat-bubble overflow/wrapping */
+.chat-bubble {
+  display: inline-block; /* allow width to fit content but respect max-width */
+  max-width: 100%;
+  box-sizing: border-box;
+  white-space: pre-wrap;    /* preserve newlines, but wrap long lines */
+  word-break: break-word;  /* break long words/URLs */
+  overflow-wrap: anywhere;  /* fallback for some browsers */
+  hyphens: auto;
+  padding: 0.6rem 0.9rem;
+}
+
+.chat-bubble pre, .chat-bubble code {
+  white-space: pre-wrap !important; /* allow wrapping inside pre/code */
+  word-break: break-word !important;
+  overflow-wrap: anywhere !important;
+  max-width: 100%;
+  display: block;
+  margin: 0;
+}
+
+/* Ensure left/right chat rows don't collapse and keep spacing */
+.chat-start, .chat-end {
+  display: flex;
+  align-items: flex-start;
+}
+
+.chat-end { justify-content: flex-end; }
+
+/* On narrow screens allow bubbles to occupy most of width */
+@media (max-width: 640px) {
+  .chat-bubble { max-width: 92vw; }
+}
+

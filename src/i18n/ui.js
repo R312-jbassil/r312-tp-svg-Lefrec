@@ -51,7 +51,7 @@ export const ui = {
   },
   index: {
     title: 'Bienvenue sur le générateur SVG',
-    description: 'Créez et affichez des SVG à partir d\'invites.',
+    description: 'Créez et affichez des SVG à partir de prompt.',
     button: 'Aller au générateur SVG',
     library: 'Aller à la galerie'
   },
@@ -59,7 +59,7 @@ export const ui = {
     title: 'Générateur SVG',
     contentPlaceholder: 'Le contenu SVG sera affiché ici',
     codePlaceholder: 'Le code SVG sera affiché ici',
-    promptLabel: 'Entrez votre invite :',
+    promptLabel: 'Entrez votre prompt :',
     generateButton: 'Générer le SVG',
     editButton: 'Éditer',
     saveButton: 'Sauvegarder',
