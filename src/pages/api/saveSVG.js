@@ -5,9 +5,7 @@ export async function POST({ request }) {
   const data = await request.json();
   console.log("Received data to save:", data);
   try {
-    const record = await pb
-      .collection(Collections.SavedSVG)
-      .create(data);
+    const record = await pb.collection(Collections.SVG).create(data);
     console.log("SVG saved with ID:", record.id);
 
     return new Response(JSON.stringify({ success: true, id: record.id }), {

@@ -2,19 +2,19 @@
 import Layout from "../../layouts/Layout.astro";
 import { getSVG } from "../../../backend/backend";
 import { ui } from "../../i18n/ui.js";
-import type { SavedSVGResponse } from "../../utils/pocketbase-types";
+import type { SVGResponse } from "../../utils/pocketbase-types";
 
 const locale = (Astro.locals?.lang as "en" | "fr") ?? "en";
 const { id } = Astro.params;
 
 const result = await getSVG(id);
-let SVG: SavedSVGResponse | null = null;
+let SVG: SVGResponse | null = null;
 let errorMsg = "";
 if (result && "success" in result && result.success === false) {
   errorMsg = result.message;
 } else {
-  SVG = result as SavedSVGResponse;
-  SVG.chat_history = JSON.parse(SVG.chat_history || "[]");
+  SVG = result as SVGResponse;
+  SVG.chat_history = SVG.chat_history;
 }
 ---
 
@@ -160,7 +160,7 @@ if (result && "success" in result && result.success === false) {
     // Appelez la fonction pour générer le SVG
     // Appelez la fonction pour générer le SVG (envoie tout l'historique)
     let aiResponse = await generateSVG(history);
-    history.push({ role: "assistant", content: aiResponse }); // Ajoutez la réponse de l'IA à l'historique
+    history.push({ role: "assistant", content: aiResponse.content }); // Ajoutez la réponse de l'IA à l'historique
 
     // Extraire le SVG de la réponse
     const svgMatch =
@@ -192,7 +192,7 @@ if (result && "success" in result && result.success === false) {
 
     const response = await update({
       id: formData.get("id"),
-      code_svg: aiResponse,
+      code_svg: aiResponse.content,
       chat_history: JSON.stringify(history),
     });
     const data = await response.json();

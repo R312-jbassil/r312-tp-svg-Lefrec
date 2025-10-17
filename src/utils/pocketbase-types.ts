@@ -7,7 +7,6 @@ import type { RecordService } from 'pocketbase'
 
 export enum Collections {
 	SVG = "SVG",
-	SavedSVG = "SavedSVG",
 	Authorigins = "_authOrigins",
 	Externalauths = "_externalAuths",
 	Mfas = "_mfas",
@@ -44,14 +43,6 @@ export type AuthSystemFields<T = unknown> = {
 // Record types for each collection
 
 export type SVGRecord = {
-	code?: string
-	created?: IsoDateString
-	id: string
-	name?: string
-	updated?: IsoDateString
-}
-
-export type SavedSVGRecord = {
 	chat_history?: string
 	code_svg?: string
 	created?: IsoDateString
@@ -124,7 +115,6 @@ export type UsersRecord = {
 
 // Response types include system fields and match responses from the PocketBase API
 export type SVGResponse<Texpand = unknown> = Required<SVGRecord> & BaseSystemFields<Texpand>
-export type SavedSVGResponse<Texpand = unknown> = Required<SavedSVGRecord> & BaseSystemFields<Texpand>
 export type AuthoriginsResponse<Texpand = unknown> = Required<AuthoriginsRecord> & BaseSystemFields<Texpand>
 export type ExternalauthsResponse<Texpand = unknown> = Required<ExternalauthsRecord> & BaseSystemFields<Texpand>
 export type MfasResponse<Texpand = unknown> = Required<MfasRecord> & BaseSystemFields<Texpand>
@@ -136,7 +126,6 @@ export type UsersResponse<Texpand = unknown> = Required<UsersRecord> & AuthSyste
 
 export type CollectionRecords = {
 	SVG: SVGRecord
-	SavedSVG: SavedSVGRecord
 	_authOrigins: AuthoriginsRecord
 	_externalAuths: ExternalauthsRecord
 	_mfas: MfasRecord
@@ -147,7 +136,6 @@ export type CollectionRecords = {
 
 export type CollectionResponses = {
 	SVG: SVGResponse
-	SavedSVG: SavedSVGResponse
 	_authOrigins: AuthoriginsResponse
 	_externalAuths: ExternalauthsResponse
 	_mfas: MfasResponse
@@ -161,7 +149,6 @@ export type CollectionResponses = {
 
 export type TypedPocketBase = PocketBase & {
 	collection(idOrName: 'SVG'): RecordService<SVGResponse>
-	collection(idOrName: 'SavedSVG'): RecordService<SavedSVGResponse>
 	collection(idOrName: '_authOrigins'): RecordService<AuthoriginsResponse>
 	collection(idOrName: '_externalAuths'): RecordService<ExternalauthsResponse>
 	collection(idOrName: '_mfas'): RecordService<MfasResponse>

@@ -1,8 +1,12 @@
 /// <reference path="../pb_data/types.d.ts" />
 migrate((app) => {
+  const collection = app.findCollectionByNameOrId("pbc_2596568427");
+
+  return app.delete(collection);
+}, (app) => {
   const collection = new Collection({
-    "createRule": null,
-    "deleteRule": null,
+    "createRule": "",
+    "deleteRule": "",
     "fields": [
       {
         "autogeneratePattern": "[a-z0-9]{15}",
@@ -35,24 +39,10 @@ migrate((app) => {
       {
         "autogeneratePattern": "",
         "hidden": false,
-        "id": "text3949269562",
+        "id": "text1997877400",
         "max": 0,
         "min": 0,
-        "name": "code_svg",
-        "pattern": "",
-        "presentable": false,
-        "primaryKey": false,
-        "required": false,
-        "system": false,
-        "type": "text"
-      },
-      {
-        "autogeneratePattern": "",
-        "hidden": false,
-        "id": "text1807006754",
-        "max": 0,
-        "min": 0,
-        "name": "chat_history",
+        "name": "code",
         "pattern": "",
         "presentable": false,
         "primaryKey": false,
@@ -81,19 +71,15 @@ migrate((app) => {
         "type": "autodate"
       }
     ],
-    "id": "pbc_2169175225",
+    "id": "pbc_2596568427",
     "indexes": [],
-    "listRule": null,
+    "listRule": "",
     "name": "SVG",
     "system": false,
     "type": "base",
-    "updateRule": null,
-    "viewRule": null
+    "updateRule": "",
+    "viewRule": ""
   });
 
   return app.save(collection);
-}, (app) => {
-  const collection = app.findCollectionByNameOrId("pbc_2169175225");
-
-  return app.delete(collection);
 })
